@@ -1,5 +1,17 @@
 <template>
-  <h1>Home</h1>
+ <div class="container-fluid vh-100" style="padding-top: 100px;background-color: aqua;">
+    <div>
+      <h1>HOME1</h1>
+      <h1>HOME2</h1>
+    </div>
+  </div>
+  <div class="container-fluid vh-100" style="padding-top: 100px;background-color: red;">
+    <div>
+      <h1>HOME1</h1>
+      <h1>HOME2</h1>
+    </div>
+  </div>
+  
 </template>
 
 <script setup lang="ts" name="Home">

@@ -4,19 +4,25 @@
     >
     <div class="container-fluid">
         <div class="col-3">
-          <a class="navbar-brand  " href="#">台灣優惠第一品牌</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <RouterLink 
+              to="/"
+              class="navbar-brand"
+            >
+              <span class="me-3 d-lg-none">—</span>台灣優惠第一品牌
+          </RouterLink>
         </div>
       
         <div class="col-6 d-flex justify-content-center" >
           <ul class="navbar-nav ">
-            <li class="nav-item">
+            <RouterLink 
+              to="/about"
+              class="nav-link "
+              ><span class="me-3 d-lg-none">—</span>關於我們</RouterLink>
+            <!-- <li class="nav-item">
               <a class="nav-link " href="#">關於我們 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link " href="#">從商品尋找</a>
+              <a class="nav-link " href="#">從品牌尋找</a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="#">從Podcaster尋找</a>
@@ -26,8 +32,12 @@
 
         <div class="col-3">
           <a href="#" class="position-relative me-3">
-            <!-- <i v-if="isScrolled" class="bi bi-heart-fill fs-4 text-white"></i>
-            <i v-else class="bi bi-heart-fill fs-4 text-dark"></i> -->
+            <i class="bi bi-person-circle fs-4" :class="isScrolled ? 'text-white' : 'text-dark'"></i>
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle">
+              <span class="visually-hidden">account</span>
+            </span>
+          </a>
+          <a href="#" class="position-relative me-3">
             <i class="bi bi-heart-fill fs-4" :class="isScrolled ? 'text-white' : 'text-dark'"></i>
             <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
               <span class="visually-hidden">New alerts</span>
@@ -47,6 +57,7 @@
 
 <script setup>
 import { ref, reactive, toRefs, toRef, computed, watch, onMounted, onBeforeUnmount  } from "vue";
+import { RouterView, RouterLink} from 'vue-router';
 
 const isScrolled = ref(false);
 const handleScroll = () => {
