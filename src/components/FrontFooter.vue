@@ -1,6 +1,6 @@
 <template>
     <footer class="text-center text-lg-start bg-dark text-muted w-100 mb-0">
-        <div class="container-fluid text-white mb-md-7 mb-4">
+        <div class="container-fluid text-white mb-md-7">
             <div class="row text-center text-md-start pt-4 ">
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <h5 class="text-uppercase fw-bold mb-4">
@@ -15,7 +15,7 @@
                         Search
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset">搜尋 Product</a>
+                        <a href="#!" class="text-reset">搜尋 Brand</a>
                     </p>
                     <p>
                         <a href="#!" class="text-reset">搜尋 Podcast</a>
