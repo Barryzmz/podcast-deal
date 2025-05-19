@@ -18,7 +18,22 @@ const router = createRouter({
                     path: 'about',
                     name: 'about',
                     component: () => import('../views/AboutView.vue'),
-                }
+                },
+                {
+                    path: 'podcaster',
+                    name: 'podcaster',
+                    component: () => import('../views/SearchPodcaster.vue'),
+                },
+                {
+                    path: 'brand',
+                    name: 'brand',
+                    component: () => import('../views/SearchBrand.vue'),
+                },
+                {
+                    path: 'podcasterpage',
+                    name: 'podcasterpage',
+                    component: () => import('../views/PodcasterPage.vue'),
+                },
             ]
         },
     ]
