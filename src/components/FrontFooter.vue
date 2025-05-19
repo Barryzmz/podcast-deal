@@ -1,5 +1,5 @@
 <template>
-    <footer class="text-center text-lg-start bg-dark text-muted w-100 mb-0">
+    <footer class="text-center text-lg-start text-muted w-100 mb-0"  style="background-color: #2C2C2C;">
         <div class="container-fluid text-white mb-md-7">
             <div class="row text-center text-md-start pt-4 ">
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">

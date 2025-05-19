@@ -1,8 +1,10 @@
 <template>
-  <FrontNavbar />
-  <div class="min-vh-100 ">
+  <div class="min-vh-100 p-0 bg-dark">
+    <div>
+      <FrontNavbar />
+    </div>
     <!-- 這裡放你的內容 -->
-    
+
     <RouterView />
   </div>
   <FrontFooter />
