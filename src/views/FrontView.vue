@@ -8,6 +8,7 @@
     <RouterView />
   </div>
   <FrontFooter />
+  <el-backtop :right="50" :bottom="50" style="color: #000;"/>
 </template>
 
 <script setup lang="ts">
