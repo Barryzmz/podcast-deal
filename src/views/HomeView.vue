@@ -35,13 +35,115 @@
       </div>
     </div>
   </div>
+  <div class="container ">
+    <div data-aos="fade-up" class="row py-5 py-lg-9 px-4 g-4 g-lg-3 text-white">
+      <h3 class="title-border-dark position-relative text-center pb-5 mb-0">協助品牌與Podcaster打造曝光聲音廣告</h3>
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 d-flex justify-content-center">
+          <div class="Txt text-center text-lg-start">
+            <h2 class="titleBox">
+              <span class="text-white">Podcaster 與 品牌方共創雙贏機會</span>
+            </h2>
+
+            <div class="text mt-5 mb-4 text-white">
+              <h4>合作 Podcaster，精準觸及受眾，提升聲量銷售</h4>
+              <span>在這裡，觀眾可以簡單獲取品牌優惠與發現其他優質Podcaster。</span>
+            </div>
+            <a href="./bookClub.html" class="btn btn-primary px-5 py-3">查看一下</a>
+          </div>
+        </div>
+        <div class="col-lg-4 pe-0">
+          <img src="@/assets/image/homeview1.png" width="100%" alt="BOOK CLUB發起讀書會">
+        </div>
+      </div>
+      <div class="row align-items-center mt-5">
+        <div class="col-lg-4 ps-0">
+          <img src="@/assets/image/homeview2.png" width="100%" alt="BOOK CLUB發起讀書會">
+        </div>
+        <div class="col-lg-8 d-flex justify-content-center">
+          <div class="Txt text-center text-lg-start ">
+            <h2 class="titleBox">
+              <span class="text-white">流量數據分析</span>
+            </h2>
+
+            <div class="text mt-5 mb-4 text-white">
+              <h4>掌握流量脈動</h4>
+              <span>透過蒐集網站流量，圖表視覺化分析，評估合作機會，提升節目與行銷品質</span>
+            </div>
+            <a href="./bookClub.html" class="btn btn-primary px-5 py-3">查看一下</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h2 class="text-center mt-5 mb-3 text-white">選擇適合你的方案</h2>
+      <div class="row g-4 d-flex justify-content-center pb-5">
+        <!-- 免費方案 -->
+        <div class="col-md-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header text-center bg-white">
+              <h5 class="card-title mb-0">免費方案</h5>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-price text-dark text-start mb-3">NT$0<span class="fs-6">/月</span></h2>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ 基本優惠上架</li>
+              </ul>
+              <a href="#" class="btn btn-primary mt-auto">開始使用</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 專業方案 -->
+        <div class="col-md-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header text-center bg-white">
+              <h5 class="card-title mb-0">基本方案</h5>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-price text-dark text-start mb-3">NT$150<span class="fs-6">/月</span></h2>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ 基本優惠上架</li>
+                <li>✅ 演算法靠前</li>
+                <li>✅ 技術支援</li>
+              </ul>
+              <a href="#" class="btn btn-primary mt-auto">開始使用</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 企業方案 -->
+        <div class="col-md-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header text-center bg-white">
+              <h5 class="card-title mb-0">升級方案</h5>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-price text-dark text-start mb-3">NT$250<span class="fs-6">/月</span></h2>
+              <ul class="list-unstyled mb-4 text-start">
+                <li>✅ 基本優惠上架</li>
+                <li>✅ 演算法靠前</li>
+                <li>✅ 技術支援</li>
+                <li>✅ 流量技術分析</li>
+              </ul>
+              <a href="#" class="btn btn-primary mt-auto">開始使用</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
   
   
 </template>
 
 <script setup lang="js" name="Home">
-
-const modules = [EffectFade, Autoplay, Pagination];
+import homeview1 from '@/assets/image/homeview1.png'
+import homeview2 from '@/assets/image/homeview2.png'
+// const modules = [EffectFade, Autoplay, Pagination];
 </script>
 
 <style scoped>
