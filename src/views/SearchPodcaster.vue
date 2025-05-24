@@ -3,49 +3,40 @@
     <div class="col-2">
       <div class="row pt-4 ">
         <div class="col-12 ms-auto ">
-          <div class="accordion accordion-flush  sticky-top" id="accordionFlushExample" style="top: 5rem;">
-            <div class="accordion-item ">
-              <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  閒聊喜劇
-                </button>
-              </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Placeholder </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                  新聞時事
-                </button>
-              </h2>
-              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Placeholder </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                  財經知識
-                </button>
-              </h2>
-              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Placeholder</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                  運動保健
-                </button>
-              </h2>
-              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Placeholder</div>
-              </div>
-            </div>
-          </div>
-          
+          <el-menu
+            default-active="0"
+            :router="false"
+            v-model:active-index="activeIndex"
+            class="el-menu-vertical-demo"
+            @select="handleSelect"
+          >
+            <template v-for="item in categoryData" :key="item.id">
+              <!-- 如果有 children，就渲染子選單 -->
+              <el-sub-menu
+                v-if="item.children"
+                :index="item.id"
+              >
+                <template #title>
+                  <span>{{ item.label }}</span>
+                </template>
+                <el-menu-item
+                  v-for="child in item.children"
+                  :key="child.id"
+                  :index="child.id"
+                >
+                  {{ child.label }}
+                </el-menu-item>
+              </el-sub-menu>
+
+              <!-- 否則就渲染單一選項 -->
+              <el-menu-item
+                v-else
+                :index="item.id"
+              >
+                {{ item.label }}
+              </el-menu-item>
+            </template>
+          </el-menu>
         </div>
       </div>
       
@@ -59,7 +50,7 @@
           style="width: 200px;"
         >
           <RouterLink 
-            to="/podcasterpage"
+            to="/profileAndDealPage"
             class="text-decoration-none"
           >
             <div class="d-flex flex-column align-items-center bg-dark p-0">
@@ -80,7 +71,18 @@
         </div>
       </div>
     </div>
-    <div class="col-2"></div>
+    <div class="col-2">
+      <el-image
+        :src=templatead1
+        fit="cover"
+        style="width: 100%; height: auto; border-radius: 8px;"
+      />
+      <el-image
+        :src=templatead2
+        fit="cover"
+        style="width: 100%; height: auto; border-radius: 8px;"
+      />
+    </div>
   </div>
 </template>
 
@@ -97,6 +99,8 @@ import avatar8 from '@/assets/image/podcaster/瘋女人聊天室.jpg'
 import avatar9 from '@/assets/image/podcaster/吳淡如人生實用商學院.jpg'
 import avatar10 from '@/assets/image/podcaster/達康還在講新世界.jpg'
 import avatar11 from '@/assets/image/podcaster/澀情守門員.jpg'
+import templatead1 from '@/assets/image/範例外部廣告1.png'
+import templatead2 from '@/assets/image/範例外部廣告2.png'
 const podcasters = ref([
   {
     id: 1,
@@ -154,17 +158,88 @@ const podcasters = ref([
   },
   {
     id: 10,
-    podcasterName: '達康還在講 新世界',
-    host: '達康.com',
-    image: avatar10,
-  },
-  {
-    id: 11,
     podcasterName: '澀情守門員',
     host: '史搞/小迪/阿強',
     image: avatar11,
   }
 ])
+
+const categoryData = ref([
+  { label: '🔥排行榜前十名', id: "0" },
+  { label: '🔥訂閱前十名',   id: "1" },
+  {
+    label: '藝術與娛樂',
+    id: "2",
+    children: [
+      { label: '藝術與娛樂', id: "2-1" },
+      { label: '影視作品', id: "2-2" },
+      { label: '書籍文學', id: "2-3" },
+      { label: '喜劇', id: "2-4" },
+      { label: '名人', id: "2-5" },
+      { label: '流行文化', id: "2-6" },
+      { label: '故事', id: "2-7" },
+    ],
+  },
+  {
+    label: '商業與科技',
+    id: "3",
+    children: [
+      { label: '商業與科技', id: "3-1" },
+      { label: '商業', id: "3-2" },
+      { label: '職業', id: "3-3" },
+      { label: '經濟學', id: "3-4" },
+      { label: '金融', id: "3-5" },
+      { label: '行銷', id: "3-6" },
+      { label: '科技', id: "3-7" },
+    ],
+  },
+  {
+    label: '教育',
+    id: "4",
+    children: [
+      { label: '教育', id: "4-1" },
+      { label: '政府', id: "4-2" },
+      { label: '歷史', id: "4-3" },
+      { label: '語言', id: "4-4" },
+      { label: '哲學', id: "4-5" },
+      { label: '科學', id: "4-6" },
+    ],
+  },
+  {
+    label: '遊戲',
+    id: "5",
+    children: [
+      { label: '遊戲', id: "5-1" },
+      { label: '電玩', id: "5-2" },
+    ],
+  },
+  {
+    label: '生活與健康',
+    id: "6",
+    children: [
+      { label: '美容', id: "6-1" },
+      { label: '時尚', id: "6-2" },
+      { label: '健身與營養', id: "6-3" },
+      { label: '餐飲', id: "6-4" },
+      { label: '健康', id: "6-5" },
+      { label: '嗜好', id: "6-6" },
+      { label: '生活風格', id: "6-7" },
+      { label: '冥想Podcast', id: "6-8" },
+      { label: '育兒', id: "6-9" },
+      { label: '關係', id: "6-10" },
+      { label: '自我關懷', id: "6-11" },
+      { label: '性', id: "6-12" },
+    ],
+  }
+])
+
+const activeIndex = ref('0')
+
+function handleSelect(index, indexPath) {
+  console.log('你點中了 index：', index)
+  console.log('完整路徑為：', indexPath)
+  // 在這裡可以依 index 做後續操作
+}
 
 function handlePageChange(page) {
   console.log('切換到第', page, '頁')
@@ -177,8 +252,43 @@ function handlePageChange(page) {
   margin: auto;
 }
 .square-avatar {
-  border-radius: 0 !important; /* 移除圓角，讓它變成方形 */
-  overflow: hidden; /* 確保圖片不會溢出 */
+  margin-bottom: 0;
+  border-radius: 0 !important; 
+  overflow: hidden; 
 }
 
+.collapse-button{
+  /* 去掉默认边框和阴影 */
+  border: none;
+  box-shadow: none;
+}
+
+.filter-tree {
+  width: 240px;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 8px;
+}
+</style>
+
+<style>
+.custom-collapse .el-collapse-item__wrap,
+.custom-collapse .el-collapse-item__content {
+  padding: 0 !important;
+}
+
+.collapse-like-card {
+  cursor: pointer;
+  margin-bottom: 0;         /* 和 collapse 紧贴 */
+  width: 100%;
+  height: 40px;             /* 根据你的情况微调 */
+  line-height: 40px;        /* 文本垂直居中 */
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #fff;   /* 或者你实际折叠 header 的背景色 */
+  padding: 0 16px;          /* 根据你的主题间距调整 */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
 </style>
