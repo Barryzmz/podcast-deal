@@ -30,13 +30,41 @@ const router = createRouter({
                     component: () => import('../views/SearchBrand.vue'),
                 },
                 {
-                    path: 'podcasterpage',
-                    name: 'podcasterpage',
-                    component: () => import('../views/PodcasterPage.vue'),
-                },
+                    path: 'profileAndDealPage',
+                    name: 'ProfileAndDealPage',
+                    component: () => import('../views/ProfileAndDealPage.vue'),
+                    children: [
+                        {
+                            path: '',
+                            name: 'AdvertorialList',
+                            component: () => import('../components/AdvertorialList.vue'),
+                        },
+                        {
+                            path: 'advertorial/:id',
+                            name: 'Advertorial',
+                            component: () => import('../components/Advertorial.vue'),
+                            props: route => ({
+                                id: route.params.id
+                            })
+                        }
+                    ]
+                }
             ]
         },
-    ]
+    ],
+
+    scrollBehavior(to, from, savedPosition) {
+        // 1. 前進/後退時保留原本位置
+        if (savedPosition) {
+            return savedPosition
+        }
+        // 2. 只有在 name 為 'Advertorial' 的頁面才滾到頂端
+        if (to.name === 'Advertorial') {
+            return { left: 0, top: 0 }
+        }
+        // 3. 其他情況不做任何改動（維持目前滾動）
+            return false
+    }
 })
 
 //暴露出去router
