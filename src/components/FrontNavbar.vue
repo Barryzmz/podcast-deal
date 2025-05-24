@@ -18,7 +18,7 @@
         <div class="col-6 d-flex justify-content-center" >
           <ul class="navbar-nav ">
             <RouterLink 
-              to="/podcasterpage"
+              to="/about"
               class="navbar-brand"
               :class="isScrolled ? 'text-white' : ''"
               ><span class="me-3 d-lg-none">—</span>關於我們</RouterLink>
