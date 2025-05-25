@@ -50,7 +50,12 @@
           style="width: 200px;"
         >
           <RouterLink 
-            to="/profileAndDealPage"
+            :to ="{
+              name: 'profileAndDealPage',
+              params:{
+                userid: podcaster.id
+              }
+            }"
             class="text-decoration-none"
           >
             <div class="d-flex flex-column align-items-center bg-dark p-0">
