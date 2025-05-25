@@ -1,60 +1,93 @@
 <template>
-  <div class="container-fluid">
-    <div class="row mx-0 px-0 ">
-      <div class="col-3 mt-4">
-        <div class="row m-0 p-0">
-          <div class="col-10 ms-auto">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-              <div class="accordion-item ">
-                <h2 class="accordion-header" id="flush-headingOne">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    數位3C
-                  </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    居家生活
-                  </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    美妝時尚
-                  </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder</div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFour">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                    休閒保健
-                  </button>
-                </h2>
-                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="col-6">
-        <AdvertorialList :posts="posts" />
-      </div>
+  <div class="row mx-0 mb-0 px-0 bg-dark h-100">
+    <div class="col-2">
+      <div class="row pt-4 ">
+        <div class="col-12 ms-auto ">
+          <el-menu
+            default-active="0"
+            :router="false"
+            v-model:active-index="activeIndex"
+            class="el-menu-vertical-demo"
+            @select="handleSelect"
+          >
+            <template v-for="item in categoryData" :key="item.id">
+              <!-- 如果有 children，就渲染子選單 -->
+              <el-sub-menu
+                v-if="item.children"
+                :index="item.id"
+              >
+                <template #title>
+                  <span>{{ item.label }}</span>
+                </template>
+                <el-menu-item
+                  v-for="child in item.children"
+                  :key="child.id"
+                  :index="child.id"
+                >
+                  {{ child.label }}
+                </el-menu-item>
+              </el-sub-menu>
 
-      <div class="col-3"></div>
+              <!-- 否則就渲染單一選項 -->
+              <el-menu-item
+                v-else
+                :index="item.id"
+              >
+                {{ item.label }}
+              </el-menu-item>
+            </template>
+          </el-menu>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-8 ">
+      <div class="d-flex flex-wrap gap-4 p-3 ms-3">
+        <div
+          v-for="podcaster in podcasters"
+          :key="podcaster.id"
+          class="d-flex flex-column align-items-center bg-dark p-0 "
+          style="width: 200px;"
+        >
+          <RouterLink 
+            :to ="{
+              name: 'profileAndDealPage',
+              params:{
+                userid: podcaster.id
+              }
+            }"
+
+            class="text-decoration-none"
+          >
+            <div class="d-flex flex-column align-items-center bg-dark p-0">
+              <img
+                :src="podcaster.image"
+                :alt="podcaster.podcasterName"
+                style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 16px;"
+              />
+              <p class="mt-2 mb-0 w-100 text-start fw-bold" style="font-size: 1rem; color: white;">
+                {{ podcaster.podcasterName }}
+              </p>
+              <p class="mt-0 mb-0 w-100 text-start fw-bold" style="font-size: 0.8rem; color: white;">
+                {{ podcaster.host }}
+              </p>
+            </div>
+          </RouterLink>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-2">
+      <el-image
+        :src=templatead1
+        fit="cover"
+        style="width: 100%; height: auto; border-radius: 8px;"
+      />
+      <el-image
+        :src=templatead2
+        fit="cover"
+        style="width: 100%; height: auto; border-radius: 8px;"
+      />
     </div>
   </div>
 </template>
@@ -63,102 +96,156 @@
 import { ref } from 'vue'
 import avatar1 from '@/assets/image/podcaster/呱吉.jpg'
 import avatar2 from '@/assets/image/podcaster/台灣通勤第一品牌.jpg'
-import AdvertorialList from '@/components/AdvertorialList.vue'
-
-const posts = ref([
+import avatar3 from '@/assets/image/podcaster/百靈果.jpg'
+import avatar4 from '@/assets/image/podcaster/股癌.jpg'
+import avatar5 from '@/assets/image/podcaster/蔡阿嘎543.jpg'
+import avatar6 from '@/assets/image/podcaster/唐洋雞酒屋.jpg'
+import avatar7 from '@/assets/image/podcaster/好味小姐.jpg'
+import avatar8 from '@/assets/image/podcaster/瘋女人聊天室.jpg'
+import avatar9 from '@/assets/image/podcaster/吳淡如人生實用商學院.jpg'
+import avatar10 from '@/assets/image/podcaster/達康還在講新世界.jpg'
+import avatar11 from '@/assets/image/podcaster/澀情守門員.jpg'
+import templatead1 from '@/assets/image/範例外部廣告1.png'
+import templatead2 from '@/assets/image/範例外部廣告2.png'
+const podcasters = ref([
   {
     id: 1,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【Saily】贊助播出',
-    content: '前往 下載 Saily APP，並在結帳時使用優惠代碼 【commute】立即享有專屬 eSIM 方案 85 折優惠！ #SailyeSIM',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '呱吉',
+    host: '呱吉&采翎',
+    image: avatar1,
   },
   {
     id: 2,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【NordVPN】贊助播出',
-    content: '現在只要搜尋或到NordVPN官網輸入台通的專屬優惠碼【commute】現在購買獨家優惠方案 享贈送4個月另有30天試用期，可以隨時取消',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '台灣通勤第一品牌',
+    host: '台灣通勤第一品牌',
+    image: avatar2,
   },
   {
     id: 3,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【臺北市文化局】贊助播出',
-    content: '▐ 第 29 屆臺北文化獎 ​ • ​ 現正開放徵選 ▐The 29th Taipei Culture Award Announces Call for Entries第29屆臺北文化獎徵選開跑啦！即日起至6月17日(二)17:30受理申請自 1997 年創辦至今，「臺北文化獎」已表揚超過 80 位傑出文化人與團體！感謝這些年每一位文化人的投入，也感謝市民對文化持續的參與與關注。臺北文化獎之受獎者，每年至多以2名為原則，每名受獎者可獲頒獎座1座、獎金新臺幣100萬元獎勵重點：落實文化深入生活、傳統開出現代、本土面向國際，對臺北市文化特質之形塑有特殊貢獻者。',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '百靈果 News',
+    host: 'Bailingguo News',
+    image: avatar3,
   },
   {
     id: 4,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【雷霆特攻隊*】贊助播出',
-    content: '本集節目由【雷霆特攻隊*】贊助播出漫威最新電影《雷霆特攻隊*》全台戲院熱映中！這部被外媒譽為「MCU全新轉折點」的電影集結了一群魅力十足的反英雄充滿衝撞火花與獨特魅力，顛覆你對漫威宇宙所有的想像片尾彩蛋超驚喜！將撼動漫威宇宙未來！不想被暴雷？立即衝戲院，見證漫威新篇章！#漫威回來了 #動作爽度爆表 #幽默與情感兼具 #今年不容錯過的一部電影',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '股癌',
+    host: '謝孟恭',
+    image: avatar4,
   },
   {
     id: 5,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【經脆脆 雞皮餅乾】贊助播出',
-    content: '台灣雞皮餅乾領導品牌「經脆脆」，不只將鹹酥雞攤的必點菜單炸雞皮、甜不辣變成涮嘴零食，2025更推出新品「素米血脆片」！🌟原料嚴選新鮮糯米製成的素米血糕🌟完美還原鹹酥雞攤的白胡椒香氣🌟全素可食！6/3前，經脆脆全系列商品滿$399，輸入優惠碼【commute2025】可折抵$30專屬連結：#經脆脆 #雞皮餅乾 #素米血脆片',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '蔡阿嘎543',
+    host: '蔡阿嘎',
+    image: avatar5,
   },
   {
     id: 6,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '【Saily eSIM】贊助播出',
-    content: '本集節目由【Saily eSIM】贊助播出現在前往  下載 Saily APP並在結帳時使用優惠代碼 [newfolder]立即享有專屬 eSIM 方案 85 折優惠!',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '唐洋雞酒屋',
+    host: '唐綺揚',
+    image: avatar6,
   },
   {
     id: 7,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【YODEE 優迪】與【Brush Baby】贊助播出！',
-    content: '來自英國的嬰幼兒口腔保健專家【Brush Baby】，專為小朋友設計一系列潔牙用品，從剛長牙的寶寶到大童都能找到合適的選擇。其中最受歡迎的【WildOnes】兒童聲波電動牙刷系列也是我們最喜歡的！搭載軟毛震動技術、智能計時與換區提醒功能，能幫助培養正確刷牙習慣；還有超可愛的動物造型，讓孩子每天刷牙都變得超期待！也有針對不同年齡的電動牙刷可選擇，柔軟雙刷毛幫助清潔力加倍，連齒縫也不放過！全機更是IPX7防水等級，小孩邊洗澡邊刷牙也OK，根本懶人救星。不只牙刷，Brush Baby還有手指棉巾、固齒器牙刷，以及最高含氟量達1350ppmF的木醣醇兒童牙膏，系列超齊全，全面守護從嬰兒到兒童的口腔健康！即日起至5/26，點擊下方連結，即可享有台通聽眾專屬限時優惠，滿額再加贈【木醣醇牙膏12ml】！台通專屬優惠連結👉 ',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '好味小姐開束縛我還你原形',
+    host: '好味小姐',
+    image: avatar7,
   },
   {
     id: 8,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【Saily】贊助播出',
-    content: '前往https://saily.com/commute 下載 Saily APP，並在結帳時使用優惠代碼 【commute】立即享有專屬 eSIM 方案 85 折優惠！',
-    dateTime: '2025/05/10 ~ 2025/05/21',
-    available: '可用'
+    podcasterName: '瘋女人聊天室',
+    host: 'Apple 泰辣 G蛋布丁',
+    image: avatar8,
   },
   {
     id: 9,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【光茵樂活】贊助播出',
-    content: '媽媽說保養品太多？那你該換個方式寵她了💡今年就送媽媽「喝得下的保養」，光茵樂活鮮銀耳禮盒是媽媽真的會打開喝完、還會問你在哪買的貼心禮💝',
-    dateTime: '永久',
-    available: '不可用'
+    podcasterName: '吳淡如人生實用商學院',
+    host: '吳淡如',
+    image: avatar9,
   },
   {
     id: 10,
-    username: '台灣通勤第一品牌',
-    avatar: avatar2,
-    title: '本集節目由【NordVPN】贊助播出',
-    content: '現在只要搜尋https://nordvpn.com/commute或到NordVPN官網輸入台通的專屬優惠碼【commute】現在購買獨家優惠方案 享贈送4個月另有30天試用期，可以隨時取消',
-    dateTime: '2025/04/10 ~ 2025/04/21',
-    available: '可用'
-  },
+    podcasterName: '澀情守門員',
+    host: '史搞/小迪/阿強',
+    image: avatar11,
+  }
 ])
 
+const categoryData = ref([
+  { label: '🔥排行榜前十名', id: "0" },
+  { label: '🔥訂閱前十名',   id: "1" },
+  {
+    label: '藝術與娛樂',
+    id: "2",
+    children: [
+      { label: '藝術與娛樂', id: "2-1" },
+      { label: '影視作品', id: "2-2" },
+      { label: '書籍文學', id: "2-3" },
+      { label: '喜劇', id: "2-4" },
+      { label: '名人', id: "2-5" },
+      { label: '流行文化', id: "2-6" },
+      { label: '故事', id: "2-7" },
+    ],
+  },
+  {
+    label: '商業與科技',
+    id: "3",
+    children: [
+      { label: '商業與科技', id: "3-1" },
+      { label: '商業', id: "3-2" },
+      { label: '職業', id: "3-3" },
+      { label: '經濟學', id: "3-4" },
+      { label: '金融', id: "3-5" },
+      { label: '行銷', id: "3-6" },
+      { label: '科技', id: "3-7" },
+    ],
+  },
+  {
+    label: '教育',
+    id: "4",
+    children: [
+      { label: '教育', id: "4-1" },
+      { label: '政府', id: "4-2" },
+      { label: '歷史', id: "4-3" },
+      { label: '語言', id: "4-4" },
+      { label: '哲學', id: "4-5" },
+      { label: '科學', id: "4-6" },
+    ],
+  },
+  {
+    label: '遊戲',
+    id: "5",
+    children: [
+      { label: '遊戲', id: "5-1" },
+      { label: '電玩', id: "5-2" },
+    ],
+  },
+  {
+    label: '生活與健康',
+    id: "6",
+    children: [
+      { label: '美容', id: "6-1" },
+      { label: '時尚', id: "6-2" },
+      { label: '健身與營養', id: "6-3" },
+      { label: '餐飲', id: "6-4" },
+      { label: '健康', id: "6-5" },
+      { label: '嗜好', id: "6-6" },
+      { label: '生活風格', id: "6-7" },
+      { label: '冥想Podcast', id: "6-8" },
+      { label: '育兒', id: "6-9" },
+      { label: '關係', id: "6-10" },
+      { label: '自我關懷', id: "6-11" },
+      { label: '性', id: "6-12" },
+    ],
+  }
+])
 
+const activeIndex = ref('0')
+
+function handleSelect(index, indexPath) {
+  console.log('你點中了 index：', index)
+  console.log('完整路徑為：', indexPath)
+  // 在這裡可以依 index 做後續操作
+}
 
 function handlePageChange(page) {
   console.log('切換到第', page, '頁')
@@ -166,9 +253,48 @@ function handlePageChange(page) {
 </script>
 
 <style scoped>
+.container {
+  max-width: 700px;
+  margin: auto;
+}
 .square-avatar {
-  border-radius: 0 !important; /* 移除圓角，讓它變成方形 */
-  overflow: hidden; /* 確保圖片不會溢出 */
+  margin-bottom: 0;
+  border-radius: 0 !important; 
+  overflow: hidden; 
 }
 
+.collapse-button{
+  /* 去掉默认边框和阴影 */
+  border: none;
+  box-shadow: none;
+}
+
+.filter-tree {
+  width: 240px;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 8px;
+}
+</style>
+
+<style>
+.custom-collapse .el-collapse-item__wrap,
+.custom-collapse .el-collapse-item__content {
+  padding: 0 !important;
+}
+
+.collapse-like-card {
+  cursor: pointer;
+  margin-bottom: 0;         /* 和 collapse 紧贴 */
+  width: 100%;
+  height: 40px;             /* 根据你的情况微调 */
+  line-height: 40px;        /* 文本垂直居中 */
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #fff;   /* 或者你实际折叠 header 的背景色 */
+  padding: 0 16px;          /* 根据你的主题间距调整 */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
 </style>
