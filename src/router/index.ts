@@ -7,42 +7,47 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            component: () => import('../views/FrontView.vue'),
+            component: () => import('@/views/FrontView.vue'),
             children: [
                 {
                     path: '',
                     name: 'home',
-                    component: () => import('../views/HomeView.vue'),
+                    component: () => import('@/views/HomeView.vue'),
                 },
                 {
                     path: 'about',
                     name: 'about',
-                    component: () => import('../views/AboutView.vue'),
+                    component: () => import('@/views/AboutView.vue'),
                 },
                 {
                     path: 'podcaster',
                     name: 'podcaster',
-                    component: () => import('../views/SearchPodcaster.vue'),
+                    component: () => import('@/views/SearchPodcaster.vue'),
                 },
                 {
                     path: 'brand',
                     name: 'brand',
-                    component: () => import('../views/SearchBrand.vue'),
+                    component: () => import('@/views/SearchBrand.vue'),
                 },
                 {
-                    path: 'profileAndDealPage',
-                    name: 'ProfileAndDealPage',
-                    component: () => import('../views/ProfileAndDealPage.vue'),
+                    path: 'profileAndDealPage/:userid',
+                    name: 'profileAndDealPage',
+                    component: () => import('@/views/ProfileAndDealPage.vue'),
+                    props: true,
+                    redirect: to => ({
+                        name: 'AdvertorialList',
+                        params: { userid: to.params.userid }
+                    }),
                     children: [
                         {
                             path: '',
                             name: 'AdvertorialList',
-                            component: () => import('../components/AdvertorialList.vue'),
+                            component: () => import('@/components/AdvertorialList.vue'),
                         },
                         {
                             path: 'advertorial/:id',
                             name: 'Advertorial',
-                            component: () => import('../components/Advertorial.vue'),
+                            component: () => import('@/components/Advertorial.vue'),
                             props: route => ({
                                 id: route.params.id
                             })
