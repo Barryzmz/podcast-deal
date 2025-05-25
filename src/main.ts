@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
 
 //創建一個應用
 const app = createApp(App)
@@ -13,5 +15,6 @@ const app = createApp(App)
 app.use(router)
 
 app.use(ElementPlus)
+app.component('VueLoading', Loading)
 //掛載整個應用到app容器中
 app.mount('#app')
