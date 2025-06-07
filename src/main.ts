@@ -9,6 +9,11 @@ import 'element-plus/dist/index.css'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 
+
+if (import.meta.env.VITE_USE_MOCK === 'true') {
+  import('./service/mock')
+}
+
 //創建一個應用
 const app = createApp(App)
 //使用路由器
