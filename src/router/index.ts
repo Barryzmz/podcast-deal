@@ -30,13 +30,13 @@ const router = createRouter({
                     component: () => import('@/views/SearchBrand.vue'),
                 },
                 {
-                    path: 'profileAndDealPage/:userid',
+                    path: '/@:accountId',
                     name: 'profileAndDealPage',
                     component: () => import('@/views/ProfileAndDealPage.vue'),
                     props: true,
                     redirect: to => ({
                         name: 'AdvertorialList',
-                        params: { userid: to.params.userid }
+                        params: { accountId: to.params.accountId }
                     }),
                     children: [
                         {
