@@ -22,17 +22,17 @@ const router = createRouter({
                 {
                     path: 'podcaster',
                     name: 'podcaster',
-                    component: () => import('@/views/SearchPodcaster.vue'),
+                    component: () => import('@/views/SearchPodcasterView.vue'),
                 },
                 {
                     path: 'brand',
                     name: 'brand',
-                    component: () => import('@/views/SearchBrand.vue'),
+                    component: () => import('@/views/SearchBrandView.vue'),
                 },
                 {
                     path: '/@:accountId',
                     name: 'profileAndDealPage',
-                    component: () => import('@/views/ProfileAndDealPage.vue'),
+                    component: () => import('@/views/ProfileAndDealView.vue'),
                     props: true,
                     redirect: to => ({
                         name: 'AdvertorialList',
