@@ -59,7 +59,7 @@ const error = ref<string | null>(null)
 
 const accountProfile = ref({
   imageUrl: null,
-  podcasterName: '',
+  accountName: '',
   name: '',
   type: '',
   introduction: ''

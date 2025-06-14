@@ -1,7 +1,7 @@
 
 export interface Account {
   accountId: string
-  podcasterName: string
+  accountName: string
   host: string
   image: string
 }
