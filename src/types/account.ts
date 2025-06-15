@@ -2,8 +2,19 @@
 export interface Account {
   accountId: string
   accountName: string
-  host: string
+  name: string
   image: string
+  type: string
+  introduction: string
+}
+
+export const DefaultAccount: Account = {
+  accountId: '',
+  accountName: '',
+  name: '',
+  image: '',
+  type: '',
+  introduction: ''
 }
 
 export interface Comment {

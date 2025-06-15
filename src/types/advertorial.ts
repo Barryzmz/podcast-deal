@@ -8,11 +8,29 @@ export interface Advertorial {
   partners?: AdvertorialAccount[]
   title: string
   content: string
-  dateTime: string
+  startDate: string
+  endDate: string
   available: boolean   
   liked: boolean        
   likeCount: number     
   commentCount: number  
+}
+
+export const DefaultAdvertorial: Advertorial = {
+  id: '',
+  accountId: '',
+  name: '',
+  imageUrl: '',
+  avatar: '',
+  partners: [],
+  title: '',
+  content: '',
+  startDate: '',
+  endDate: '',
+  available: false,
+  liked: false,
+  likeCount: 0,
+  commentCount: 0
 }
 
 export interface AdvertorialAccount {
