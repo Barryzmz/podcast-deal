@@ -31,7 +31,9 @@
             </div>
             <div class="d-flex align-items-center ms-auto">
               <!-- 日期 -->
-              <span class="text-muted small me-3">{{ advertorial.dateTime }}</span>
+              <span v-if="advertorial.startDate || advertorial.endDate" class="text-muted small me-3">
+                {{ advertorial.startDate }} ~ {{ advertorial.endDate }}
+              </span>
               <!-- 三點選單 -->
               <el-dropdown
                 trigger="click"
