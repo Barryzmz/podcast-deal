@@ -78,10 +78,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { ElCard, ElAvatar } from 'element-plus'
-import avatar2 from '@/assets/image/podcaster/台灣通勤第一品牌.jpg'
-import Lee from '@/assets/image/user/李毅誠.jpg'
-import Hao from '@/assets/image/user/hao.jpg'
-import lon from '@/assets/image/user/家倫.jpg'
 import type { Advertorial, Comment } from '@/types/advertorial'
 import baseApi from '@/service/api'
 
