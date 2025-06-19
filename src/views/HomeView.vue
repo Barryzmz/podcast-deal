@@ -1,44 +1,19 @@
 <template>
   <div class="container-fluid">
-    <div class="row justify-content-center"> <!-- 加上 row -->
-      <div class="col-10 d-flex justify-content-center mx-0 px-0">
-        <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-              aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-              aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-              aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-              aria-label="Slide 4"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="@/assets/image/banner_advertiser.png" class="image-cover" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="@/assets/image/banner_podcaster.png" class="image-cover" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="@/assets/image/banner_singleAdvertiser.png" class="image-cover" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="@/assets/image/banner_singlePodcaster.png" class="image-cover" alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+    <div class="row position-relative">
+      <swiper :navigation="true" :pagination="{ clickable: true }"
+        :autoplay="{ delay: 5000, disableOnInteraction: false }" :loop="true" :modules="modules"
+        class="homeViewSwiper">
+        <swiper-slide>
+          <img src="@/assets/image/banner_advertiser.png" alt="Slide 1" class="slide-img" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="@/assets/image/banner_podcaster.png" alt="Slide 2" class="slide-img" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="@/assets/image/banner_singlePodcaster.png" alt="Slide 3" class="slide-img" />
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
   <div class="container ">
@@ -154,8 +129,14 @@
 </template>
 
 <script setup lang="js" name="Home">
+import { onMounted, ref } from 'vue'
 import homeview1 from '@/assets/image/homeview1.png'
 import homeview2 from '@/assets/image/homeview2.png'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import logo1 from '@/assets/image/advitiser/ASUS.png'
 import logo2 from '@/assets/image/advitiser/fangzih.png'
 import logo3 from '@/assets/image/advitiser/healthdaily.png'
@@ -173,56 +154,25 @@ import logo14 from '@/assets/image/advitiser/zzsleeper.png'
 import logo15 from '@/assets/image/advitiser/plain_me.png'
 // const modules = [EffectFade, Autoplay, Pagination];
 const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11, logo12, logo13, logo14, logo15]
+const modules = [Navigation, Pagination, Autoplay]
 </script>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+.homeViewSwiper {
+  width: 75vw;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.bg-dark-transparent {
-  background-color: rgba(0, 0, 0, 0.5);
-  /* 黑色 + 50% 透明 */
-}
-
-.image-cover {
-  object-fit: cover;
-  width: 100%;
-  height: 600px;
-}
-
-.coupon-cover {
+/* 圖片滿版顯示 */
+.slide-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: 48px;
-  height: 48px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1 !important;
-  transition: background-color 0.3s ease;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1);
-  width: 20px;
-  height: 20px;
 }
 
 .partner-marque {
@@ -243,6 +193,21 @@ const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, lo
 
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* 響應式調整 */
+@media (max-width: 1024px) {
+  .homeViewSwiper {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .homeViewSwiper {
+    width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 </style>
