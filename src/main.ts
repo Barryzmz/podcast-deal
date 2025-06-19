@@ -8,7 +8,9 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
-
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+import 'swiper/css/pagination'
 
 if (import.meta.env.VITE_USE_MOCK === 'true') {
   import('./service/mock')
