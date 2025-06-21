@@ -19,7 +19,7 @@
       </div>
 
       <!-- 中間葉配資訊 -->
-      <div class="col-6 mb-5">
+      <div class="col-6 mb-0">
         <router-view v-slot="{ Component, route }">
           <!-- 只有 AdvertorialList 需要被 keep-alive 缓存 -->
           <keep-alive include="AdvertorialList">

@@ -129,6 +129,17 @@ mock.onPost('/brand_list').reply(config => {
   }]
 })
 
+mock.onPost('/create_advertorial_comment').reply(config => {
+  const requestData = JSON.parse(config.data)
+  const { advertorialId, content, author } = requestData
+  console.log('create_advertorial_comment', advertorialId, content, author)
+  // 假設你有資料是陣列格式
+  return [200, {
+    success: true,
+    data: "",
+    message: ''
+  }]
+})
 
 export default mock
 
