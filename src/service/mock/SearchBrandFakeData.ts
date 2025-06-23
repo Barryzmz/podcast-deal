@@ -1,4 +1,4 @@
-import type { Account  } from '@/types/account'
+import type {Account} from '@/types/baseType'
 import NordVPN from '@/assets/image/advitiser/NordVPN.png'
 import sleepyTofu from '@/assets/image/advitiser/眠豆腐.png'
 import zzsleeper from '@/assets/image/advitiser/zzsleeper.png'
@@ -14,56 +14,86 @@ import han_fang_yu_ping from '@/assets/image/advitiser/翰方御品.png'
 import templatead1 from '@/assets/image/範例外部廣告1.png'
 import templatead2 from '@/assets/image/範例外部廣告2.png'
 
-export const top_ten_brand = [
+export const top_ten_brand: Account[] = [
   {
     accountId: 'Nord_VPN',
+    accountName: 'Nord VPN',
     name: 'Nord VPN',
-    image: NordVPN,
+    avatar: NordVPN,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'sleepyTofu',
+    accountName: '眠豆腐',
     name: '眠豆腐',
-    image: sleepyTofu,
+    avatar: sleepyTofu,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'zzsleeper',
+    accountName: 'zz-sleeper',
     name: 'zz-sleeper',
-    image: zzsleeper,
+    avatar: zzsleeper,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'yodde',
+    accountName: '優迪',
     name: '優迪',
-    image: yodde,
+    avatar: yodde,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'Roichen',
+    accountName: 'Roichen',
     name: 'Roichen',
-    image: Roichen,
+    avatar: Roichen,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'guliuguliu',
+    accountName: '谷溜谷溜',
     name: '谷溜谷溜',
-    image: guliuguliu,
+    avatar: guliuguliu,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'healthdaily',
+    accountName: '好日生醫',
     name: '好日生醫',
-    image: healthdaily,
+    avatar: healthdaily,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'saholea',
+    accountName: '森鷗黎漾',
     name: '森鷗黎漾',
-    image: saholea,
+    avatar: saholea,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'fangzih',
+    accountName: '芳茲',
     name: '芳茲',
-    image: fangzih,
+    avatar: fangzih,
+    type: 'Advertiser',
+    introduction: ''
   },
   {
     accountId: 'saily_esim',
+    accountName: 'Saily eSIM',
     name: 'Saily eSIM',
-    image: saily_esim,
+    avatar: saily_esim,
+    type: 'Advertiser',
+    introduction: ''
   }
 ]
 

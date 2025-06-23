@@ -1,7 +1,7 @@
 <template>
     <div class="dcard-new-post mx-auto mt-4 p-5 bg-white rounded">
         <div class="d-flex align-items-center mb-3">
-            <el-avatar :src="accountProfile.imageUrl || circleUrl" size="large" class="mx-2" shape="circle"
+            <el-avatar :src="accountProfile.avatar || circleUrl" size="large" class="mx-2" shape="circle"
                 fit="cover" />
             <div class="text-start">
                 <strong class="d-block text-muted">{{ accountProfile.name }}</strong>
@@ -13,10 +13,10 @@
                 <el-form-item class="d-flex align-items-center ">
                     <el-select v-model="selectedPartnerIds" multiple filterable placeholder="選擇合作夥伴" style="width: 100%">
                         <el-option v-for="partner in partnerList" filterable :key="partner.accountId"
-                            :label="partner.name" :value="partner.accountId">
+                            :label="partner.accountName" :value="partner.accountId">
                             <div class="d-flex align-items-center ">
-                                <img :src="partner.image" style="height: 40px" class="me-2" />
-                                <span>{{ partner.name }}</span>
+                                <img :src="partner.avatar" style="height: 40px" class="me-2" />
+                                <span>{{ partner.accountName }}</span>
                             </div>
                         </el-option>
                     </el-select>
@@ -51,41 +51,33 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { Account } from '@/types/baseType'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 import { ElAvatar } from 'element-plus'
-
+interface Props {
+  accountProfile: Account
+  partnerList: Account[]
+}
 const title = ref('')
 const content = ref('')
 const currentDate = ref(null)
 const startDate = ref(null)
 const editor = ref(null)
 const endDate = ref(null)
-const selectedPartnerIds = ref([])
-const selectedPartners = computed(() =>
-    partners.value.filter(p => selectedPartnerIds.value.includes(p.accountId))
-)
+const selectedPartnerIds = ref<Account[]>([])
 const circleUrl = ref('https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
 const MAX_WIDTH = 1200
 const MAX_HEIGHT = 1200
 const IMG_QUALITY = 0.8
 let quill
 let intervalId
-const checkCurrentDateTimeFrequency = 15000
+const checkCurrentDateTimeFrequency = 1000
 
 const emit = defineEmits(['submit'])
-const props = defineProps({
-    accountProfile: {
-        type: Object,
-        required: true
-    },
-    partnerList: {
-        type: Array,
-        required: true
-    }
-})
+const props = defineProps<Props>()
 
 /// 日期處理
 // 持續更新目前時間
@@ -137,7 +129,7 @@ function imageHandler() {
                 quill.insertEmbed(range.index, 'image', dataUrl)
                 quill.setSelection(range.index + 1)
             }
-            img.src = e.target.result
+            img.src = e.target.result as string
         }
         reader.readAsDataURL(file)
     }

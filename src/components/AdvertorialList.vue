@@ -11,22 +11,22 @@
         v-for="advertorial in advertorialList"
         :key="advertorial.id"
         :to="{ name: 'Advertorial', params: { id: advertorial.id } }"
-        class="text-decoration-none d-block mb-4"
+        class="text-decoration-none d-block mb-1"
       >
         <el-card
           class="shadow-sm rounded-4 border-0"
           :body-style="{ padding: '1.2rem' }"
         >
-          <div class="d-flex align-items-center mb-3">
+          <div class="d-flex align-items-center mb-1">
             <el-avatar
-              :src="advertorial.avatar"
+              :src="advertorial.account.avatar"
               size="default"
               class="me-3 mx-2"
               shape="square"
               fit="cover"
             />
             <div class="text-start">
-              <strong class="d-block">{{ advertorial.name }}</strong>
+              <strong class="d-block">{{ advertorial.account.accountName }}</strong>
               <small class="text-muted">#{{ advertorial.available }}</small>
             </div>
             <div class="d-flex align-items-center ms-auto">
@@ -65,7 +65,7 @@
             <div class="flex-wrap mt-2">
               <div
                 v-for="other in advertorial.partners"
-                :key="other.id"
+                :key="other.accountId"
                 class="d-flex align-items-start me-4 mb-2"
               >
                 <el-avatar
@@ -74,7 +74,7 @@
                   shape="square"
                   fit="cover"
                 />
-                <span class="ms-2">{{ other.name }}</span>
+                <span class="ms-2">{{ other.accountName }}</span>
               </div>
             </div>
           </div>
@@ -126,10 +126,9 @@ import {
   ElCard, 
   ElAvatar,
   ElDropdown,
-  ElDropdownMenu,
   ElDropdownItem } from 'element-plus'
 import { RouterLink} from 'vue-router';
-import type { Advertorial } from '@/types/advertorial'
+import type { Advertorial } from '@/types/baseType'
 
 const props = defineProps<{
   advertorial: Advertorial[]

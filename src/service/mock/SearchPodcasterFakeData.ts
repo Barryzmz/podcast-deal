@@ -1,4 +1,4 @@
-import type { Account  } from '@/types/account'
+import type {Account} from '@/types/baseType'
 import FroggyChiu from '@/assets/image/podcaster/呱吉.jpg'
 import commuteforme from '@/assets/image/podcaster/台灣通勤第一品牌.jpg'
 import bailingguo from '@/assets/image/podcaster/百靈果.jpg'
@@ -16,62 +16,82 @@ export const top_ten_Podcaster: Account[] = [
   {
     accountId: 'commuteforme',
     accountName: '台灣通勤第一品牌',
-    host: '台灣通勤第一品牌',
-    image: commuteforme,
+    name: '台灣通勤第一品牌',
+    avatar: commuteforme,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'FroggyChiu',
     accountName: '呱吉',
-    host: '呱吉&采翎',
-    image: FroggyChiu,
+    name: '呱吉&采翎',
+    avatar: FroggyChiu,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'bailingguo',
     accountName: '百靈果 News',
-    host: 'Bailingguo News',
-    image: bailingguo,
+    name: 'Bailingguo News',
+    avatar: bailingguo,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'Gooaye',
     accountName: '股癌',
-    host: '謝孟恭',
-    image: Gooaye,
+    name: '謝孟恭',
+    avatar: Gooaye,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'TsaiAGa543',
     accountName: '蔡阿嘎543',
-    host: '蔡阿嘎',
-    image: TsaiAGa543,
+    name: '蔡阿嘎',
+    avatar: TsaiAGa543,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'jessetang1113',
     accountName: '唐洋雞酒屋',
-    host: '唐綺揚',
-    image: jessetang1113,
+    name: '唐綺揚',
+    avatar: jessetang1113,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'ladyflavor_brain',
     accountName: '好味小姐開束縛我還你原形',
-    host: '好味小姐',
-    image: ladyflavor_brain,
+    name: '好味小姐',
+    avatar: ladyflavor_brain,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'tag.talkshow',
     accountName: '瘋女人聊天室',
-    host: 'Apple 泰辣 G蛋布丁',
-    image: tagTalkshow,
+    name: 'Apple 泰辣 G蛋布丁',
+    avatar: tagTalkshow,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'betty_wu',
     accountName: '吳淡如人生實用商學院',
-    host: '吳淡如',
-    image: betty_wu,
+    name: '吳淡如',
+    avatar: betty_wu,
+    type: 'Podcaster',
+    introduction: ''
   },
   {
     accountId: 'podcast_hbgk',
     accountName: '澀情守門員',
-    host: '史搞/小迪/阿強',
-    image: podcast_hbgk,
+    name: '史搞/小迪/阿強',
+    avatar: podcast_hbgk,
+    type: 'Podcaster',
+    introduction: ''
   }
 ]
 

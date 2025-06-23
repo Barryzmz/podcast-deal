@@ -16,14 +16,11 @@
 import { ref, onMounted, computed } from 'vue'
 import AddNewArticle from '@/components/CreateNewArticle.vue'
 import baseApi from '@/service/api'
-import { Advertorial, DefaultAdvertorial } from '@/types/advertorial'
-import { Account, DefaultAccount } from '@/types/account'
-const partners = ref([])
+import { Advertorial, DefaultAdvertorial, Account, DefaultAccount } from '@/types/baseType'
+const partners = ref<Account[]>([])
 const selectedPartnerIds = ref([])
 const advertorial = ref<Advertorial>({...DefaultAdvertorial});
-const selectedPartners = computed(() =>
-  partners.value.filter(p => selectedPartnerIds.value.includes(p.accountId))
-)
+
 
 function formatDateToYMD(date) {
   if (!(date instanceof Date)) return ''
@@ -37,20 +34,23 @@ function formatDateToYMD(date) {
 const accountProfile = ref<Account>({ ...DefaultAccount})
 
 function saveAdvertorial() {
-  advertorial.value.accountId = accountProfile.value.accountId
-  advertorial.value.name = accountProfile.value.accountName
+  advertorial.value.account.accountId = accountProfile.value.accountId
+  advertorial.value.account.accountName = accountProfile.value.accountName
   advertorial.value.partners = selectedPartnerIds.value
-  console.log('advertorial', advertorial.value)
 }
 
-function handlePostSubmit(data) {
+async function handlePostSubmit(data) {
+  saveAdvertorial()
   advertorial.value.title = data.title
   advertorial.value.content = data.content
   advertorial.value.partners = data.partnerList
   advertorial.value.startDate = formatDateToYMD(data.startDate)
   advertorial.value.endDate = formatDateToYMD(data.endDate)
-  advertorial.value.accountId = accountProfile.value.accountId
-  advertorial.value.name = accountProfile.value.name
+  advertorial.value.account.accountId = accountProfile.value.accountId
+  advertorial.value.account.accountName = accountProfile.value.accountName
+  const save = (await baseApi.post('/create_advertorial', {
+    advertorial: advertorial.value
+  }))
 }
 
 onMounted(async () => {

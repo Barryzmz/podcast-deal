@@ -38,7 +38,7 @@
             }
           }" class="text-decoration-none">
             <div class="d-flex flex-column align-items-center bg-dark p-0">
-              <img :src="brand.image" :alt="brand.accountId"
+              <img :src="brand.avatar" :alt="brand.accountId"
                 style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 16px;" />
               <p class="mt-2 mb-0 w-100 text-start fw-bold" style="font-size: 1rem; color: white;">
                 {{ brand.name }}

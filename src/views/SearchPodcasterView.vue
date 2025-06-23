@@ -39,13 +39,13 @@
             }
           }" class="text-decoration-none">
             <div class="d-flex flex-column align-items-center bg-dark p-0">
-              <img :src="podcaster.image" :alt="podcaster.accountName"
-                style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 16px;" />
+              <img :src="podcaster.avatar" :alt="podcaster.accountName"
+                style="width: 100%; height: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 16px;" />
               <p class="mt-2 mb-0 w-100 text-start fw-bold" style="font-size: 1rem; color: white;">
                 {{ podcaster.accountName }}
               </p>
               <p class="mt-0 mb-0 w-100 text-start fw-bold" style="font-size: 0.8rem; color: white;">
-                {{ podcaster.host }}
+                {{ podcaster.name }}
               </p>
             </div>
           </RouterLink>
